@@ -25,7 +25,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
-public class Locker1 extends AppCompatActivity implements View.OnClickListener, ViewListener {
+public class Locker1 extends AppCompatActivity implements View.OnClickListener {
 
     private ArrayList<Item> memoItems = null;
     private Adapter memoAdapter = null;
@@ -63,11 +63,6 @@ public class Locker1 extends AppCompatActivity implements View.OnClickListener, 
 
     }
 
-    @Override
-    public void onItemClick(int position, View view)
-    {
-
-    }
 
     @Override
     public void onClick(View view) {
@@ -101,7 +96,7 @@ public class Locker1 extends AppCompatActivity implements View.OnClickListener, 
 //                });
 //            }
 //        });
-        memoAdapter = new Adapter(memoItems, this, this);
+        memoAdapter = new Adapter(memoItems, this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(memoAdapter);
     }

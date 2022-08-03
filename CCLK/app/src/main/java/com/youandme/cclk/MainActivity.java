@@ -72,7 +72,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<GetTokenResult> task) {
                 String idToken = task.getResult().getToken();
-                Log.d(TAG,"아이디 토큰 = " + idToken);
                 Intent homeMove_intent = new Intent(getApplicationContext(), LockerMain.class);
                 startActivity(homeMove_intent);
 
