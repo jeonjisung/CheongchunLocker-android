@@ -14,7 +14,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -22,6 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Dictionary;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     private Context context = null;
@@ -70,12 +70,13 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
                                             && snapshot.child(dataSnapshot.getKey()).child("user").getValue().equals(auth.getCurrentUser().getEmail())
                                     ) {
                                         databaseReference.child("memo").child(dataSnapshot.getKey()).removeValue();
+                                        item.remove(i);
                                         notifyItemRemoved(i);
+                                        notifyItemRangeChanged(i, item.size());
                                         break;
                                     } else {
                                         Toast.makeText(context.getApplicationContext(), "본인만 삭제할 수 있습니다.", Toast.LENGTH_SHORT).show();
                                     }
-
                                 }
                             }
 
@@ -158,4 +159,5 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         }
 
     }
+
 }
