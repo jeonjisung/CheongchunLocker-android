@@ -16,4 +16,10 @@
         <item name="android:editTextColor">@color/black</item>
         <!-- Customize your theme here. -->
     </style>
+    <style name="theme_dialog" parent="android:style/Theme.Dialog">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
 </resources>

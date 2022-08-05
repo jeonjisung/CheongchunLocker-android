@@ -17,7 +17,7 @@ public class CharacterWrapTextView extends TextView {
         super(context, attrs, defStyleAttr);
     }
 
-    @Override public void setText(CharSequence text, TextView.BufferType type) {
+    @Override public void setText(CharSequence text, BufferType type) {
         super.setText(text.toString().replace(" ", "\u00A0"), type);
     }
 }

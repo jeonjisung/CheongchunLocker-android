@@ -22,8 +22,7 @@
         <activity android:name=".Locker8"/>
         <activity android:name=".Locker9"/>
         <activity android:name=".LockerMain"/>
-        <activity android:name=".MainActivity"
-            android:exported="true">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

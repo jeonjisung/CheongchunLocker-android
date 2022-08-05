@@ -1,5 +1,7 @@
 package com.youandme.cclk;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -10,11 +12,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -22,10 +29,18 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 
-public class Locker1 extends AppCompatActivity implements View.OnClickListener {
+public class Locker1 extends AppCompatActivity {
+    ImageView productImg;
+    Button editBtn;
+    TextView product_name, words;
 
     private ArrayList<Item> memoItems = null;
     private Adapter memoAdapter = null;
@@ -34,7 +49,6 @@ public class Locker1 extends AppCompatActivity implements View.OnClickListener {
     FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     DatabaseReference databaseReference = firebaseDatabase.getReference();
 
-    ImageView productImg;
     TextView dateView;
     RecyclerView recyclerView;
     Button regbtn;
@@ -47,31 +61,52 @@ public class Locker1 extends AppCompatActivity implements View.OnClickListener {
         setContentView(R.layout.locker_1);
 
         productImg = (ImageView) findViewById(R.id.product_img);
+        product_name = (TextView) findViewById(R.id.product_name);
+        words = (TextView) findViewById(R.id.words);
+
         dateView = (TextView)findViewById(R.id.memodate);
 
         recyclerView = (RecyclerView)findViewById(R.id.memolist);
 
         regbtn = (Button)findViewById(R.id.memobtn);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
 
         init();
         initView();
 
-        Glide.with(this)
-                .load("https://picsum.photos/250/250")
-                .override(250, 250)
-                .into(productImg);
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("lockerData")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if(task.isSuccessful()){
+                            for(QueryDocumentSnapshot document : task.getResult()){
+                                if(document.getReference().getId().equals("locker1")){
+                                    product_name.setText(document.get("product_name").toString());
+                                    words.setText(document.get("words").toString());
+                                }
+                            }
+                        } else {
+                            //실패
+                        }
+                    }
+                });
 
-    }
+        FirebaseStorage storage = FirebaseStorage.getInstance(); // FirebaseStorage 인스턴스 생성
+        StorageReference storageRef = storage.getReference();// 스토리지 공간을 참조해서 이미지를 가져옴
+        storageRef.child("uploads/"+"locker1.png").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
 
-
-    @Override
-    public void onClick(View view) {
-        switch (view.getId())
-        {
-            case R.id.memobtn:
-                regMemo();
-                break;
-        }
+                Glide.with(Locker1.this).load(uri).into(productImg); // Glide를 사용하여 이미지 로드
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.i("MainActivity", "실패");
+            }
+        });
     }
 
     private void init()
@@ -81,7 +116,17 @@ public class Locker1 extends AppCompatActivity implements View.OnClickListener {
 
     private void initView()
     {
-        regbtn.setOnClickListener(this);
+        regbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                switch (view.getId())
+                {
+                    case R.id.memobtn:
+                        regMemo();
+                        break;
+                }
+            }
+        });
 
 //        Button userbtn = (Button)findViewById(R.id.reguser);
 //        userbtn.setOnClickListener(this);
@@ -163,12 +208,10 @@ public class Locker1 extends AppCompatActivity implements View.OnClickListener {
 
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-                Log.d("namjinha", "addChildEvent - onChildChanged" + s);
             }
 
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {
-
             }
 
             @Override

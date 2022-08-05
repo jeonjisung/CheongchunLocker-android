@@ -1,17 +1,14 @@
 package com.youandme.cclk;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import java.util.HashMap;
-import java.util.Map;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class LockerMain extends AppCompatActivity {
     RelativeLayout[] b = new RelativeLayout[9];
