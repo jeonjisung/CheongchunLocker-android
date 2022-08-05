@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
                 String idToken = task.getResult().getToken();
                 Intent homeMove_intent = new Intent(getApplicationContext(), LockerMain.class);
                 startActivity(homeMove_intent);
-
+                finish();
             }
         });
     }

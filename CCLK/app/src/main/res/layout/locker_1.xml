@@ -10,7 +10,7 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="5"
+        android:layout_weight="4.5"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -80,7 +80,7 @@
         android:layout_width="match_parent"
         android:id="@+id/memolist"
         android:layout_height="0dp"
-        android:layout_weight="3.85"
+        android:layout_weight="4.35"
         android:background="@color/white"/>
 
     <LinearLayout
