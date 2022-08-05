@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -25,6 +26,8 @@ import java.util.ArrayList;
 public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     private Context context = null;
     private ArrayList<Item> item = null;
+
+    private FirebaseAuth auth;
 
     public Adapter(ArrayList<Item> items, Context context) {
         this.item = items;
@@ -48,16 +51,8 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = firebaseDatabase.getReference();
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null) {
-            // Name, email address, and profile photo Url
-            String name = user.getDisplayName();
-            String email = user.getEmail();
+        auth = FirebaseAuth.getInstance();
 
-            // Check if user's email is verified
-            boolean emailVerified = user.isEmailVerified();
-
-            String uid = user.getUid();
 //            if (databaseReference.child(databaseReference.getKey()).child("user").getValue() == email){
                 viewHolder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
                     @Override
@@ -72,15 +67,15 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
                                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                                         for(DataSnapshot dataSnapshot : snapshot.getChildren()){
                                             if(snapshot.child(dataSnapshot.getKey()).child("date").getValue() == item.get(i).getDate()
-//                                            snapshot.child(dataSnapshot.getKey()).child("user").getValue() == email
+                                            && snapshot.child(dataSnapshot.getKey()).child("user").getValue().equals(auth.getCurrentUser().getEmail())
                                             ){
                                                 databaseReference.child("memo").child(dataSnapshot.getKey()).removeValue();
                                                 notifyItemRemoved(i);
                                                 break;
+                                            }else{
+                                                Toast.makeText(context.getApplicationContext(), "본인만 삭제할 수 있습니다.", Toast.LENGTH_SHORT).show();
                                             }
-                                            if (dataSnapshot.child(dataSnapshot.getKey()).child("user").getValue() == item.get(i).getUser()){
-                                                Log.d("02", "제발");
-                                            }
+
                                         }
                                     }
 
@@ -102,8 +97,6 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
                         return false;
                     }
                 });
-
-        }
 //        viewHolder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
 //            @Override
 //            public boolean onLongClick(View view) {
