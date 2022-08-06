@@ -35,7 +35,9 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Locker1 extends AppCompatActivity {
     ImageView productImg;
@@ -52,6 +54,10 @@ public class Locker1 extends AppCompatActivity {
     TextView dateView;
     RecyclerView recyclerView;
     Button regbtn;
+
+    long mNow;
+    Date mDate;
+    SimpleDateFormat mFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 
     RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
 
@@ -145,6 +151,13 @@ public class Locker1 extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(memoAdapter);
     }
+    public String getTime(){
+        mNow = System.currentTimeMillis();
+        mDate = new Date(mNow);
+        String getTime = mFormat.format(mDate);
+
+        return getTime;
+    }
 
     private void regMemo()
     {
@@ -176,8 +189,9 @@ public class Locker1 extends AppCompatActivity {
             // FirebaseUser.getIdToken() instead.
             String uid = user.getUid();
 
-            item.setUser(email);
-            item.setDate(item.getTime());
+            item.setEmail(email);
+            item.setUser(name);
+            item.setDate(getTime());
             item.setMemocontents(contentsedit.getText().toString());
         }
 

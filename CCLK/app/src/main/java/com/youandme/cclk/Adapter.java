@@ -1,7 +1,9 @@
 package com.youandme.cclk;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +24,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Dictionary;
+import java.util.concurrent.locks.Lock;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     private Context context = null;
@@ -67,12 +70,16 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
                                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                                     if (snapshot.child(dataSnapshot.getKey()).child("date").getValue() == item.get(i).getDate()
-                                            && snapshot.child(dataSnapshot.getKey()).child("user").getValue().equals(auth.getCurrentUser().getEmail())
+                                            && snapshot.child(dataSnapshot.getKey()).child("user").getValue().equals(auth.getCurrentUser().getDisplayName())
                                     ) {
                                         databaseReference.child("memo").child(dataSnapshot.getKey()).removeValue();
-                                        item.remove(i);
                                         notifyItemRemoved(i);
-                                        notifyItemRangeChanged(i, item.size());
+                                        Intent intent = new Intent(view.getContext(), Locker1.class);
+                                        context.startActivity(intent);
+                                        ((Activity)context).finish();
+//                                      item.remove(i);
+//                                      this.recreate();
+//                                      notifyItemRangeChanged(i, 1);
                                         break;
                                     } else {
                                         Toast.makeText(context.getApplicationContext(), "본인만 삭제할 수 있습니다.", Toast.LENGTH_SHORT).show();

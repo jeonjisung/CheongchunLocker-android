@@ -8,15 +8,7 @@ public class Item {
     private String user;
     private String memocontents;
     private String date;
-
-    public String getUser()
-    {
-        return user;
-    }
-
-    long mNow;
-    Date mDate;
-    SimpleDateFormat mFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+    private String email;
 
     public String getDate() {
         return date;
@@ -26,10 +18,19 @@ public class Item {
         this.date = date;
     }
 
+    public String getUser()
+    {
+        return user;
+    }
+
     public void setUser(String user)
     {
         this.user = user;
     }
+
+    public String getEmail(){return this.email;}
+
+    public void setEmail(String email){this.email = email;}
 
     public String getMemocontents()
     {
@@ -41,11 +42,4 @@ public class Item {
         this.memocontents = memocontents;
     }
 
-    public String getTime(){
-        mNow = System.currentTimeMillis();
-        mDate = new Date(mNow);
-        String getTime = mFormat.format(mDate);
-
-        return getTime;
-    }
 }
