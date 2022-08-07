@@ -97,7 +97,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
                     });
                     builder.show();
                 } else {
-                    Toast.makeText(context.getApplicationContext(), "본인의 댓글만 삭제할 수 있습니다.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context.getApplicationContext(), "자신의 댓글만 삭제할 수 있습니다.", Toast.LENGTH_SHORT).show();
                 }
                 return false;
             }
