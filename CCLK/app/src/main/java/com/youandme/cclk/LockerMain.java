@@ -17,7 +17,7 @@ public class LockerMain extends AppCompatActivity {
     private long presstime = 0;
 
     TextView info;
-
+    Save_Var saveVar = Save_Var.getInstance();
     void M_onClick(RelativeLayout b, final int num) {
 
         final boolean[] check = {false};
@@ -28,38 +28,56 @@ public class LockerMain extends AppCompatActivity {
             public void onClick(View v) {
                 switch (num) {
                     case 0:
+                        saveVar.memo_now = "memo1";
+                        saveVar.aClass = Locker1.class;
                         intent = new Intent(LockerMain.this, Locker1.class);
                         startActivity(intent);
                         break;
                     case 1:
+                        saveVar.memo_now = "memo2";
+                        saveVar.aClass = Locker2.class;
                         intent = new Intent(LockerMain.this, Locker2.class);
                         startActivity(intent);
                         break;
                     case 2:
+                        saveVar.memo_now = "memo3";
+                        saveVar.aClass = Locker3.class;
                         intent = new Intent(LockerMain.this, Locker3.class);
                         startActivity(intent);
                         break;
                     case 3:
+                        saveVar.memo_now = "memo4";
+                        saveVar.aClass = Locker4.class;
                         intent = new Intent(LockerMain.this, Locker4.class);
                         startActivity(intent);
                         break;
                     case 4:
+                        saveVar.memo_now = "memo5";
+                        saveVar.aClass = Locker5.class;
                         intent = new Intent(LockerMain.this, Locker5.class);
                         startActivity(intent);
                         break;
                     case 5:
+                        saveVar.memo_now = "memo6";
+                        saveVar.aClass = Locker6.class;
                         intent = new Intent(LockerMain.this, Locker6.class);
                         startActivity(intent);
                         break;
                     case 6:
+                        saveVar.memo_now = "memo7";
+                        saveVar.aClass = Locker7.class;
                         intent = new Intent(LockerMain.this, Locker7.class);
                         startActivity(intent);
                         break;
                     case 7:
+                        saveVar.memo_now = "memo8";
+                        saveVar.aClass = Locker8.class;
                         intent = new Intent(LockerMain.this, Locker8.class);
                         startActivity(intent);
                         break;
                     case 8:
+                        saveVar.memo_now = "memo9";
+                        saveVar.aClass = Locker9.class;
                         intent = new Intent(LockerMain.this, Locker9.class);
                         startActivity(intent);
                         break;

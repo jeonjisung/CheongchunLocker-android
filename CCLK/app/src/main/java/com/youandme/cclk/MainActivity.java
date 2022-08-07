@@ -66,17 +66,7 @@ public class MainActivity extends AppCompatActivity {
     public void onStart() {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        //updateUI(currentUser);
-        currentUser.getIdToken(true).addOnCompleteListener(new OnCompleteListener<GetTokenResult>() {
-            @Override
-            public void onComplete(@NonNull Task<GetTokenResult> task) {
-                String idToken = task.getResult().getToken();
-                Intent homeMove_intent = new Intent(getApplicationContext(), LockerMain.class);
-                startActivity(homeMove_intent);
-                finish();
-            }
-        });
+
     }
     // [END on_start_check_user]
 

@@ -55,11 +55,9 @@ public class Locker1 extends AppCompatActivity {
     RecyclerView recyclerView;
     Button regbtn;
 
-    long mNow;
-    Date mDate;
-    SimpleDateFormat mFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-
     RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+
+    Save_Var saveVar = Save_Var.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,8 +87,10 @@ public class Locker1 extends AppCompatActivity {
                         if(task.isSuccessful()){
                             for(QueryDocumentSnapshot document : task.getResult()){
                                 if(document.getReference().getId().equals("locker1")){
-                                    product_name.setText(document.get("product_name").toString());
-                                    words.setText(document.get("words").toString());
+                                    if(document.get("product_name") != null)
+                                        product_name.setText(document.get("product_name").toString());
+                                    if(document.get("words") != null)
+                                        words.setText(document.get("words").toString());
                                 }
                             }
                         } else {
@@ -134,29 +134,9 @@ public class Locker1 extends AppCompatActivity {
             }
         });
 
-//        Button userbtn = (Button)findViewById(R.id.reguser);
-//        userbtn.setOnClickListener(this);
-//        recyclerView.post(new Runnable() {
-//            @Override
-//            public void run() {
-//                regbtn.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-//                        recyclerView.scrollToPosition(recyclerView.getAdapter().getItemCount() - 1);
-//                    }
-//                });
-//            }
-//        });
         memoAdapter = new Adapter(memoItems, this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(memoAdapter);
-    }
-    public String getTime(){
-        mNow = System.currentTimeMillis();
-        mDate = new Date(mNow);
-        String getTime = mFormat.format(mDate);
-
-        return getTime;
     }
 
     private void regMemo()
@@ -189,8 +169,8 @@ public class Locker1 extends AppCompatActivity {
             // FirebaseUser.getIdToken() instead.
             String uid = user.getUid();
 
-            item.setEmail(email);
             item.setUser(name);
+            item.setEmail(email);
             item.setDate(getTime());
             item.setMemocontents(contentsedit.getText().toString());
         }
@@ -198,10 +178,22 @@ public class Locker1 extends AppCompatActivity {
 //        memoItems.add(item);
 //        memoAdapter.notifyDataSetChanged();
 //
-        databaseReference.child("memo").push().setValue(item);
+        databaseReference.child(saveVar.memo_now).push().setValue(item);
         recyclerView.scrollToPosition(recyclerView.getAdapter().getItemCount() - 1);
         imm.hideSoftInputFromWindow(contentsedit.getWindowToken(), 0);
         contentsedit.setText(null);
+    }
+
+    long mNow;
+    Date mDate;
+    SimpleDateFormat mFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+
+    public String getTime(){
+        mNow = System.currentTimeMillis();
+        mDate = new Date(mNow);
+        String getTime = mFormat.format(mDate);
+
+        return getTime;
     }
 
     @Override
@@ -210,7 +202,23 @@ public class Locker1 extends AppCompatActivity {
         addChildEvent();
     }
     private void addChildEvent() {
-        databaseReference.child("memo").addChildEventListener(new ChildEventListener() {
+//        databaseReference.child(saveVar.memo_now).addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                memoItems.clear();
+//                for(DataSnapshot ds : snapshot.getChildren()) {
+//                    Item item = ds.getValue(Item.class);
+//                    memoItems.add(item);
+//                }
+//                memoAdapter.notifyDataSetChanged();
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
+        databaseReference.child(saveVar.memo_now).addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 Log.d("namjinha", "addChildEvent - onChildAdded:"+ dataSnapshot.getValue());

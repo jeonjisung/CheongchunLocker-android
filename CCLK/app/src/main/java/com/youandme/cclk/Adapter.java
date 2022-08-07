@@ -23,14 +23,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Dictionary;
-import java.util.concurrent.locks.Lock;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     private Context context = null;
     private ArrayList<Item> item = null;
 
-    private FirebaseAuth auth;
+    Save_Var saveVar = Save_Var.getInstance();
+
+    FirebaseAuth auth = FirebaseAuth.getInstance();
 
     public Adapter(ArrayList<Item> items, Context context) {
         this.item = items;
@@ -50,102 +50,59 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         viewHolder.titleView.setText(item.get(i).getUser());
         viewHolder.dateView.setText(item.get(i).getDate());
         viewHolder.contentsView.setText(item.get(i).getMemocontents());
-
-        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-        DatabaseReference databaseReference = firebaseDatabase.getReference();
-
-        auth = FirebaseAuth.getInstance();
-
-//            if (databaseReference.child(databaseReference.getKey()).child("user").getValue() == email){
         viewHolder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
-                builder.setMessage("댓글을 삭제하시겠습니까?");
-                builder.setPositiveButton("삭제", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int ii) {
-                        databaseReference.child("memo").addValueEventListener(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                                    if (snapshot.child(dataSnapshot.getKey()).child("date").getValue() == item.get(i).getDate()
-                                            && snapshot.child(dataSnapshot.getKey()).child("user").getValue().equals(auth.getCurrentUser().getDisplayName())
-                                    ) {
-                                        databaseReference.child("memo").child(dataSnapshot.getKey()).removeValue();
-                                        notifyItemRemoved(i);
-                                        Intent intent = new Intent(view.getContext(), Locker1.class);
-                                        context.startActivity(intent);
-                                        ((Activity)context).finish();
-//                                      item.remove(i);
-//                                      this.recreate();
-//                                      notifyItemRangeChanged(i, 1);
-                                        break;
-                                    } else {
-                                        Toast.makeText(context.getApplicationContext(), "본인만 삭제할 수 있습니다.", Toast.LENGTH_SHORT).show();
+
+                if (item.get(i).getEmail().equals(auth.getCurrentUser().getEmail())) {
+                    Log.i("PPPP", item.get(i).getUser() + " : "
+                            + " : " + auth.getCurrentUser().getEmail());
+                    AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+                    builder.setMessage("댓글을 삭제하시겠습니까?");
+                    builder.setPositiveButton("삭제", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int ii) {
+
+                            FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+                            DatabaseReference databaseReference = firebaseDatabase.getReference();
+                            databaseReference.child(saveVar.memo_now).addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                                        if (snapshot.child(dataSnapshot.getKey()).child("date").getValue() == item.get(i).getDate()) {
+                                            notifyItemRemoved(i);
+                                            databaseReference.child(saveVar.memo_now).child(dataSnapshot.getKey()).setValue(null);
+
+                                            Intent intent = new Intent(view.getContext(), saveVar.aClass);
+                                            context.startActivity(intent);
+                                            ((Activity)context).finish();
+                                            break;
+                                        }
                                     }
                                 }
-                            }
 
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError error) {
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
 
-                            }
-                        });
-                    }
-                });
+                                }
+                            });
+                        }
+                    });
 
-                builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.dismiss();
-                    }
-                });
-                builder.show();
+                    builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.dismiss();
+                        }
+                    });
+                    builder.show();
+                } else {
+                    Toast.makeText(context.getApplicationContext(), "본인의 댓글만 삭제할 수 있습니다.", Toast.LENGTH_SHORT).show();
+                }
                 return false;
             }
         });
-//        viewHolder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
-//            @Override
-//            public boolean onLongClick(View view) {
-//                AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
-//                builder.setMessage("댓글을 삭제하시겠습니까?");
-//                builder.setPositiveButton("삭제", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialogInterface, int ii) {
-//
-//                        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-//                        DatabaseReference databaseReference = firebaseDatabase.getReference();
-//                        databaseReference.child("memo").addValueEventListener(new ValueEventListener() {
-//                            @Override
-//                            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
-//                                    if(snapshot.child(dataSnapshot.getKey()).child("date").getValue() == item.get(i).getDate()){
-//                                        databaseReference.child("memo").child(dataSnapshot.getKey()).removeValue();
-//                                        notifyItemRemoved(i);
-//                                        break;
-//                                    }
-//                                }
-//                            }
-//
-//                            @Override
-//                            public void onCancelled(@NonNull DatabaseError error) {
-//
-//                            }
-//                        });
-//                    }
-//                });
-//
-//                builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialogInterface, int i) {
-//                        dialogInterface.dismiss();
-//                    }
-//                });
-//                builder.show();
-//                return false;
-//            }
-//        });
+
     }
 
     @Override
@@ -166,5 +123,4 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         }
 
     }
-
 }
