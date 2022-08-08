@@ -33,6 +33,7 @@ public class SplashActivity extends AppCompatActivity {
                             Intent homeMove_intent = new Intent(getApplicationContext(), LockerMain.class);
                             homeMove_intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(homeMove_intent);
+                            finish();
                         }
                     }, 3000);
                 } else {
