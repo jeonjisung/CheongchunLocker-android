@@ -50,11 +50,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_margin="10dp"
-            android:textColor="@color/black"
+            android:layout_margin="5dp"
             android:text=""
+            android:textColor="@color/black"
             android:textSize="17sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
     </LinearLayout>
 
