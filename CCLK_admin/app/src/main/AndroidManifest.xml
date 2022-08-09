@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.youandme.cclk">
+    <!-- 인터넷 권한 설정   -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 인터넷 연결 확인-->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/app_icon_sizeup"
+        android:label="청춘라커"
+        android:roundIcon="@mipmap/app_icon_sizeup_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.CCLK">
+        <activity
+            android:name=".MainActivity" />
+        <activity android:name=".Locker1"/>
+        <activity android:name=".Locker2"/>
+        <activity android:name=".Locker3"/>
+        <activity android:name=".Locker4"/>
+        <activity android:name=".Locker5"/>
+        <activity android:name=".Locker6"/>
+        <activity android:name=".Locker7"/>
+        <activity android:name=".Locker8"/>
+        <activity android:name=".Locker9"/>
+        <activity android:name=".LockerMain"/>
+        <activity android:name=".UploadActivity"/>
+        <activity android:name=".SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

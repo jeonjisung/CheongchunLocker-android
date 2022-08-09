@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/camera_dialog"
+    android:background="#000000"
+    android:gravity="top|center">
+
+    <TextView
+        android:layout_marginTop="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textColor="#ffffff"
+        android:layout_marginLeft="8dp"
+        android:text="이미지 설정"/>
+
+    <LinearLayout
+        android:id="@+id/select_gallery"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:layout_marginBottom="70dp"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:tint="#ffffff"
+            android:adjustViewBounds="true"
+            android:src="@drawable/gallery_icon"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:textColor="#ffffff"
+            android:textSize="15sp"
+            android:text="앨범에서 사진선택"/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_marginTop="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textColor="#ffffff"
+        android:layout_marginLeft="8dp"
+        android:text="텍스트 설정"/>
+
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:tint="#ffffff"
+            android:adjustViewBounds="true"
+            android:src="@drawable/product_icon"/>
+        <EditText
+            android:id="@+id/product_name_edit"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textColor="#373737"
+            android:textColorHint="#afafaf"
+            android:layout_marginLeft="8dp"
+            android:hint="상품 이름"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginBottom="15dp"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:tint="#ffffff"
+            android:adjustViewBounds="true"
+            android:src="@drawable/contents_icon"/>
+        <EditText
+            android:id="@+id/words_edit"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textColor="#373737"
+            android:textColorHint="#afafaf"
+            android:layout_marginLeft="8dp"
+            android:hint="추가 내용"/>
+    </LinearLayout>
+    <Button
+        android:id="@+id/apply_button"
+        android:layout_marginTop="40dp"
+        android:text="적용"
+        android:textStyle="bold"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

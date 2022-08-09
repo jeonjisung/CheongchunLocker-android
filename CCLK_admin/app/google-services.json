@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "334406062382",
+    "project_id": "cclk-dacd6",
+    "storage_bucket": "cclk-dacd6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:334406062382:android:541fd618f9cf04030caabf",
+        "android_client_info": {
+          "package_name": "com.youandme.cclk"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "334406062382-bpi2jptp35d453inb0hfsjv7228aemg2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.youandme.cclk",
+            "certificate_hash": "3ceefbded145dce8bd2a4fa32916cd840f5397d7"
+          }
+        },
+        {
+          "client_id": "334406062382-ph10dan0fcd4v8e0ttfmoeja26q0a87n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC9Ynv_yrc0mTAKy100Zie8LLI9rDCIUiA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "334406062382-ph10dan0fcd4v8e0ttfmoeja26q0a87n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
