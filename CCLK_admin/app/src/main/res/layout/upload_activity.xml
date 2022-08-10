@@ -68,8 +68,9 @@
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:textSize="15sp"
-            android:textColor="#373737"
+            android:textColor="@color/white"
             android:textColorHint="#afafaf"
+            android:textCursorDrawable="@null"
             android:layout_marginLeft="8dp"
             android:hint="상품 이름"/>
     </LinearLayout>
@@ -90,8 +91,9 @@
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:textSize="15sp"
-            android:textColor="#373737"
+            android:textColor="@color/white"
             android:textColorHint="#afafaf"
+            android:textCursorDrawable="@null"
             android:layout_marginLeft="8dp"
             android:hint="추가 내용"/>
     </LinearLayout>

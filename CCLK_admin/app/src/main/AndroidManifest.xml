@@ -8,7 +8,7 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/app_icon_sizeup"
-        android:label="청춘라커"
+        android:label="청춘라커 어드민용"
         android:roundIcon="@mipmap/app_icon_sizeup_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CCLK">
@@ -25,7 +25,8 @@
         <activity android:name=".Locker9"/>
         <activity android:name=".LockerMain"/>
         <activity android:name=".UploadActivity"/>
-        <activity android:name=".SplashActivity">
+        <activity android:name=".SplashActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
