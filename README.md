@@ -7,6 +7,7 @@
 ### 다운로드
 
 + [Play Store] - 출시 예정
++ [App Store] - 개발 예정
 ### 아키텍처 및 디자인
 
 + AndroidStudio's Java 사용
