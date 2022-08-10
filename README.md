@@ -1,5 +1,4 @@
-![청춘라카 이미지2](https://user-images.githubusercontent.com/74092089/183361352-ce263763-b149-40ff-8c26-7c466c194cf5.png)
-
+![청춘라카 이미지2](https://user-images.githubusercontent.com/74092089/183820912-a428d1af-46ae-42f0-b378-f7568a9ed295.png)
 
 ### 설명
 
@@ -8,8 +7,12 @@
 ### 다운로드
 
 + [Play Store] - 출시 예정
++ [App Store] - 개발 예정
 ### 아키텍처 및 디자인
 
 + AndroidStudio's Java 사용
 + Code base로 UI 구현(Material Design 사용)
 + FireBase's Auth, FireStore, RealtimeDatabase 사용
++ Admin-only app, User-only app division
++ Admin option : Add FireStore Data, CRUD RealtimeDatabase Data
++ User option : CRUD RealtimeDatabase Data
