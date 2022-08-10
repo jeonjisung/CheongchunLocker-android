@@ -12,3 +12,6 @@
 + AndroidStudio's Java 사용
 + Code base로 UI 구현(Material Design 사용)
 + FireBase's Auth, FireStore, RealtimeDatabase 사용
++ Admin-only app, User-only app division
++ Admin option : Add FireStore Data, CRUD RealtimeDatabase Data
++ User option : CRUD RealtimeDatabase Data
