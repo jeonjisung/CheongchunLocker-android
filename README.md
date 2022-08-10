@@ -1,4 +1,4 @@
-![청춘라카 이미지2](https://user-images.githubusercontent.com/74092089/183820749-59eadeb1-f012-4c60-9e91-2ec98526ed87.png)
+![청춘라카 이미지2](https://user-images.githubusercontent.com/74092089/183820912-a428d1af-46ae-42f0-b378-f7568a9ed295.png)
 
 ### 설명
 
