@@ -38,7 +38,7 @@
             android:layout_marginLeft="8dp"
             android:textColor="#ffffff"
             android:textSize="15sp"
-            android:text="앨범에서 사진선택"/>
+            android:text="앨범에서 사진선택"/>
     </LinearLayout>
 
     <TextView
