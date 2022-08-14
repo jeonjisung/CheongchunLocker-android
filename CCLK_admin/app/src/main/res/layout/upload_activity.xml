@@ -95,7 +95,7 @@
             android:textColorHint="#afafaf"
             android:textCursorDrawable="@null"
             android:layout_marginLeft="8dp"
-            android:hint="추가 내용"/>
+            android:hint="내용"/>
     </LinearLayout>
     <Button
         android:id="@+id/apply_button"
