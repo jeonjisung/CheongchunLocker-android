@@ -54,7 +54,11 @@
             android:textColor="@color/black"
             android:text=""
             android:textSize="17sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMaxTextSize="200sp"
+            android:autoSizeMinTextSize="12sp"
+            android:autoSizeStepGranularity="2sp"/>
 
 
     </LinearLayout>

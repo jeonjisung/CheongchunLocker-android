@@ -3,7 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/AndroidStudioProjects/CheongchunLocker-android/CCLK_admin/app/src/main/res/layout/upload_activity.xml" value="0.264" />
+        <entry key="..\:/AndroidStudioProjects/CheongchunLocker-android/CCLK_admin/app/src/main/res/layout/locker_1.xml" value="0.12335359675785208" />
+        <entry key="..\:/AndroidStudioProjects/CheongchunLocker-android/CCLK_admin/app/src/main/res/layout/locker_2.xml" value="0.12335359675785208" />
+        <entry key="..\:/AndroidStudioProjects/CheongchunLocker-android/CCLK_admin/app/src/main/res/layout/locker_3.xml" value="0.12335359675785208" />
+        <entry key="..\:/AndroidStudioProjects/CheongchunLocker-android/CCLK_admin/app/src/main/res/layout/locker_4.xml" value="0.12335359675785208" />
+        <entry key="..\:/AndroidStudioProjects/CheongchunLocker-android/CCLK_admin/app/src/main/res/layout/locker_5.xml" value="0.12335359675785208" />
+        <entry key="..\:/AndroidStudioProjects/CheongchunLocker-android/CCLK_admin/app/src/main/res/layout/locker_6.xml" value="0.12335359675785208" />
+        <entry key="..\:/AndroidStudioProjects/CheongchunLocker-android/CCLK_admin/app/src/main/res/layout/locker_7.xml" value="0.12335359675785208" />
+        <entry key="..\:/AndroidStudioProjects/CheongchunLocker-android/CCLK_admin/app/src/main/res/layout/locker_8.xml" value="0.12335359675785208" />
+        <entry key="..\:/AndroidStudioProjects/CheongchunLocker-android/CCLK_admin/app/src/main/res/layout/locker_9.xml" value="0.1" />
+        <entry key="..\:/AndroidStudioProjects/CheongchunLocker-android/CCLK_admin/app/src/main/res/layout/upload_activity.xml" value="0.23859649122807017" />
       </map>
     </option>
   </component>
