@@ -6,7 +6,7 @@
 
 ### 다운로드
 
-+ [Play Store] - 출시 예정
++ [Play Store](https://play.google.com/store/apps/details?id=com.youandme.cclk)
 + [App Store] - 개발 예정
 ### 아키텍처 및 디자인
 
